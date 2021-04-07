@@ -6,6 +6,9 @@ import org.junit.runner.RunWith;
 
 
 @RunWith(Cucumber.class)
-@CucumberOptions(plugin = {"pretty", "html:target/cucumber"}, glue = "classpath:com/simpleservice/stepdefs", features = "classpath:com/simpleservice/features")
+@CucumberOptions(
+        plugin = {"pretty", "html:target/cucumber-reports"},
+        glue = "classpath:com/simpleservice/stepdefs",
+        features = "classpath:com/simpleservice/features")
 public class CucumberTestRunnerTest {
 }
