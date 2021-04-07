@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+
+    stages {
+        stage("Preparation") {
+            steps{
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/pocketaces2/simple-service']]])
+            }
+        }
+
+
+        stage('Build') {
+            steps {
+                // Echo stuff
+                sh "mvn clean package"
+
+            }
+        }
+
+        stage('Run Service') {
+            steps {
+                sh "java -jar simple-service/target/*SNAPSHOT.jar &"
+            }
+
+        }
+
+        stage('Automation tests') {
+            steps {
+                sh 'mvn --pl simple-service-automation test'
+            }
+
+        }
+    }
+}
