@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty", "html:target/cucumber-reports", "json:target/cucumber.json"},
         monochrome = true, 
         glue = "classpath:com/simpleservice/stepdefs",
-        features = "classpath:com/simpleservice/features")
+        features = "classpath:com/simpleservice/features",
+        publish = true)
 public class CucumberTestRunnerTest {
 }
