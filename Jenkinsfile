@@ -1,7 +1,10 @@
 pipeline {
     agent any
-
-
+    //Configured in jenkins 'global tool configuration'
+    tools {
+      maven 'MAVEN_HOME'
+      jdk 'JAVA_HOME'
+    }
     stages {
         
         //Checkout the code
