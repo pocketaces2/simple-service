@@ -35,10 +35,11 @@ pipeline {
             steps {
                     sh 'mvn --pl simple-service-automation test'
             }
-            // Publish a cucumber report after running the tests
+            // Publish a cucumber report after running the tests either via the cucumber plugin or the html publisher plugin
             post {
               always {
-                    cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'NATURAL', undefinedStepsNumber: -1
+                  publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'simple-service-automation/target/', reportFiles: 'cucumber-reports.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+                   cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'NATURAL', undefinedStepsNumber: -1
                 }
             }
 
